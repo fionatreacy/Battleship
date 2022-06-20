@@ -14,8 +14,7 @@ def format_board(board):
 
 
 print("Welcome to Battleship!")
-print("Board size: 5x5. \n")
-print("Number of ships: 1. Number of missiles: 3. \n")
+print("Number of missiles: 3. Board size: 5x5. \n")
 print("Top left corner is row: 0, column: 0. \n")
 format_board(board)
 """
@@ -38,11 +37,11 @@ Places ship in random location on board
 """
 
 
-for attempts in range(3):
+for attempts in range(5):
     """
     Repeats the game until all attempts have been used or player wins
     """
-    print("Attempts", attempts + 1)
+    print("Attempt: ", attempts + 1)
 
     guess_row = int(input("Guess Row 0-4 : \n"))
     guess_column = int(input("Guess Column 0-4 : \n"))
@@ -59,15 +58,18 @@ for attempts in range(3):
 
     else:
         if (guess_column > 5 or guess_row > 5):
-            print("Those are land co-ordinates, try again")
+            print("Those are land co-ordinates, try again.")
             print(format_board(board))
         elif (guess_column < 0 or guess_row < 0):
-            print("Those are land co-ordinates, try again")
+            print("Those are land co-ordinates, try again.")
             print(format_board(board))
         elif board[guess_row][guess_column] == "-":
             print("You've guessed that one already, try again.")
             print(format_board(board))
         else:
-            print("You missed! You have X attempts left")
+            print("You missed! Try again.")
             board[guess_row][guess_column] = "-"
             print(format_board(board))
+
+    if attempts == 6:
+        print("Game Over")
