@@ -52,6 +52,9 @@ if ship_row == guess_row and ship_column == guess_column:
     board[ship_row][ship_column] = "X"
     print(format_board(board))
 
+elif guess_column > 5 or guess_row > 5:
+    print("Those are land co-ordinates, please enter a number from 0-4")
+    print(format_board(board))
 else:
     print("You missed! You have X attempts left")
     board[guess_row][guess_column] = "-"
