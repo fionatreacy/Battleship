@@ -38,5 +38,21 @@ ship_row = rand_row(board)
 """ 
 Allows player to guess a location
 """
-guess_row = input("Guess Row: \n")
-guess_column = input("Guess Column: \n")
+guess_row = int(input("Guess Row: \n"))
+guess_column = int(input("Guess Column: \n"))
+
+print(ship_row)
+print(ship_column)
+
+""" 
+Compare players guess to the ships location and gives a message if the player hits or misses.
+"""
+if ship_row == guess_row and ship_column == guess_column:
+    print("You've sunk the Battleship!")
+    board[ship_row][ship_column] = "X"
+    print(format_board(board))
+
+else:
+    print("You missed! You have X attempts left")
+    board[guess_row][guess_column] = "-"
+    print(format_board(board))
