@@ -36,26 +36,32 @@ ship_row = rand_row(board)
 
 
 """ 
-Allows player to guess a location
+Compare players guess to the ships location and gives a message if the player hits, misses, or has repeated a guess.
 """
-guess_row = int(input("Guess Row: \n"))
-guess_column = int(input("Guess Column: \n"))
+for attempts in range(3):
+    print("Attempts", attempts + 1)
+    """ 
+    Repeats the game until all attempts have been used or player wins
+    """
+    """ 
+    Allows player to guess a location
+    """
+    guess_row = int(input("Guess Row: \n"))
+    guess_column = int(input("Guess Column: \n"))
+    
+    if ship_row == guess_row and ship_column == guess_column:
+        print("You've sunk the Battleship!")
+        board[ship_row][ship_column] = "X"
+        print(format_board(board))
 
-print(ship_row)
-print(ship_column)
-
-""" 
-Compare players guess to the ships location and gives a message if the player hits or misses.
-"""
-if ship_row == guess_row and ship_column == guess_column:
-    print("You've sunk the Battleship!")
-    board[ship_row][ship_column] = "X"
-    print(format_board(board))
-
-elif guess_column > 5 or guess_row > 5:
-    print("Those are land co-ordinates, please enter a number from 0-4")
-    print(format_board(board))
-else:
-    print("You missed! You have X attempts left")
-    board[guess_row][guess_column] = "-"
-    print(format_board(board))
+    else:
+        if (guess_column > 5 or guess_row > 5) or (guess_column <0 or guess_row < 0):
+            print("Those are land co-ordinates, please enter a number from 0-4")
+            print(format_board(board))
+        elif board[guess_row][guess_column] == "-":
+            print("You've guessed that one already, try again.")
+            print(format_board(board))
+        else:
+            print("You missed! You have X attempts left")
+            board[guess_row][guess_column] = "-"
+            print(format_board(board))
